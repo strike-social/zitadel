@@ -75,6 +75,7 @@ export type UpdateSessionCommand = {
   organization?: string;
   checks: Checks;
   requestId?: string;
+  redirectUrl?: string;
 };
 
 export async function sendPassword(command: UpdateSessionCommand): Promise<{ error: string } | { redirect: string }> {
@@ -315,7 +316,7 @@ export async function sendPassword(command: UpdateSessionCommand): Promise<{ err
       loginName: session.factors.user.loginName,
       organization: session.factors?.user?.organizationId,
     },
-    loginSettings?.defaultRedirectUri,
+    command.redirectUrl ?? loginSettings?.defaultRedirectUri,
   );
   console.log("Password auth: Regular flow result:", result);
 

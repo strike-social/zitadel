@@ -57,6 +57,7 @@ type VerifyUserByEmailCommand = {
   code: string;
   isInvite: boolean;
   requestId?: string;
+  redirectUrl?: string;
 };
 
 export async function sendVerification(command: VerifyUserByEmailCommand) {
@@ -159,6 +160,10 @@ export async function sendVerification(command: VerifyUserByEmailCommand) {
 
     if (session.factors?.user?.loginName) {
       params.set("loginName", session.factors?.user?.loginName);
+    }
+
+    if (command.redirectUrl) {
+      params.set("redirectUrl", command.redirectUrl);
     }
 
     // set hash of userId and userAgentId to prevent attacks, checks are done for users with invalid sessions and invalid userAgentId

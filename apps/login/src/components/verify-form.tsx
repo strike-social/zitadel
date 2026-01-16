@@ -87,6 +87,7 @@ export function VerifyForm({
         loginName: loginName,
         organization: organization,
         requestId: requestId,
+        redirectUrl: redirectUrl,
       })
         .catch(() => {
           setError(t("errors.couldNotVerifyUser"));
@@ -99,10 +100,6 @@ export function VerifyForm({
       if (response && "error" in response && response?.error) {
         setError(response.error);
         return;
-      }
-
-      if (redirectUrl) {
-        return router.push(redirectUrl);
       }
 
       if (response && "redirect" in response && response?.redirect) {

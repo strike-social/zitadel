@@ -42,6 +42,7 @@ type Props = {
   organization?: string;
   requestId?: string;
   codeRequired: boolean;
+  redirectUrl?: string;
 };
 
 export function SetPasswordForm({
@@ -52,6 +53,7 @@ export function SetPasswordForm({
   userId,
   code,
   codeRequired,
+  redirectUrl
 }: Props) {
   const { register, handleSubmit, watch, formState } = useForm<Inputs>({
     mode: "onBlur",
@@ -139,6 +141,7 @@ export function SetPasswordForm({
         password: { password: values.password },
       }),
       requestId,
+      redirectUrl: redirectUrl,
     })
       .catch(() => {
         setError(t("set.errors.couldNotVerifyPassword"));

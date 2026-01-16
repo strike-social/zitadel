@@ -88,6 +88,7 @@ export async function checkMFAFactors(
   authMethods: AuthenticationMethodType[],
   organization?: string,
   requestId?: string,
+  redirectUrl?: string,
 ) {
   console.log("checkMFAFactors called with session:", {
     sessionId: session.id,
@@ -124,6 +125,10 @@ export async function checkMFAFactors(
 
     if (organization || session.factors?.user?.organizationId) {
       params.append("organization", organization ?? (session.factors?.user?.organizationId as string));
+    }
+
+    if (redirectUrl) {
+      params.append("redirectUrl", redirectUrl);
     }
 
     const factor = availableMultiFactors[0];

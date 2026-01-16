@@ -20,7 +20,7 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function Page(props: { searchParams: Promise<Record<string | number | symbol, string | undefined>> }) {
   const searchParams = await props.searchParams;
 
-  const { userId, loginName, organization, requestId, code, initial } = searchParams;
+  const { userId, loginName, organization, requestId, code, initial, redirectUrl } = searchParams;
 
   const _headers = await headers();
   const { serviceUrl } = getServiceUrlFromHeaders(_headers);
@@ -116,6 +116,7 @@ export default async function Page(props: { searchParams: Promise<Record<string 
             organization={organization}
             passwordComplexitySettings={passwordComplexity}
             codeRequired={!(initial === "true")}
+            redirectUrl={redirectUrl}
           />
         ) : (
           <div className="py-4">
