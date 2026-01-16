@@ -13,5 +13,5 @@ jobs:
     with:
       node_version: "22"
       semantic_version: "23.0.7"
-      image_name_ecr_login: ${{ github.event.repository.name }}-login-dev
+      image_name_ecr_login: ${{ github.event.repository.name }}-login
 
