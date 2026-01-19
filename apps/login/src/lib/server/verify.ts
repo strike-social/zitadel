@@ -26,7 +26,6 @@ import { checkMFAFactors } from "../verify-helper";
 import { createSessionAndUpdateCookie } from "./cookie";
 import { getOriginalHostWithProtocol } from "./host";
 import { getTranslations } from "next-intl/server";
-import { setCustomRedirectUrl } from "./custom-redirect-url";
 
 export async function verifyTOTP(code: string, loginName?: string, organization?: string) {
   const _headers = await headers();
@@ -58,17 +57,12 @@ type VerifyUserByEmailCommand = {
   code: string;
   isInvite: boolean;
   requestId?: string;
-  redirectUrl?: string;
 };
 
 export async function sendVerification(command: VerifyUserByEmailCommand) {
   const t = await getTranslations("verify");
   const _headers = await headers();
   const { serviceUrl } = getServiceUrlFromHeaders(_headers);
-
-  if (command.redirectUrl) {
-    await setCustomRedirectUrl(command.redirectUrl);
-  }
 
   const verifyResponse = command.isInvite
     ? await verifyInviteCode({

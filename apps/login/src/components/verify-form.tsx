@@ -11,6 +11,7 @@ import { Button, ButtonVariants } from "./button";
 import { TextInput } from "./input";
 import { Spinner } from "./spinner";
 import { Translated } from "./translated";
+import { setCustomRedirectUrl } from "@/lib/server/custom-redirect-url";
 
 type Inputs = {
   code: string;
@@ -80,6 +81,10 @@ export function VerifyForm({
     ): Promise<boolean | void> {
       setLoading(true);
 
+      if (redirectUrl) {
+        await setCustomRedirectUrl(redirectUrl);
+      }
+
       const response = await sendVerification({
         code: value.code,
         userId,
@@ -87,7 +92,6 @@ export function VerifyForm({
         loginName: loginName,
         organization: organization,
         requestId: requestId,
-        redirectUrl: redirectUrl,
       })
         .catch(() => {
           setError(t("errors.couldNotVerifyUser"));
