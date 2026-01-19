@@ -32,6 +32,7 @@ import {
 } from "../verify-helper";
 import { createServerTransport } from "../zitadel";
 import { getTranslations } from "next-intl/server";
+import { getAndDeleteCustomRedirectUrl } from "./custom-redirect-url";
 
 type ResetPasswordCommand = {
   loginName: string;
@@ -310,12 +311,13 @@ export async function sendPassword(command: UpdateSessionCommand): Promise<{ err
 
   // Regular flow (no requestId) - return URL for client-side navigation
   console.log("Password auth: Regular flow with loginName:", session.factors.user.loginName);
+  const customRedirectUrl = await getAndDeleteCustomRedirectUrl()
   const result = await completeFlowOrGetUrl(
     {
       loginName: session.factors.user.loginName,
       organization: session.factors?.user?.organizationId,
     },
-    loginSettings?.defaultRedirectUri,
+    customRedirectUrl ?? loginSettings?.defaultRedirectUri,
   );
   console.log("Password auth: Regular flow result:", result);
 

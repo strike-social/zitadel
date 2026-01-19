@@ -23,6 +23,7 @@ type Props = {
   code?: string;
   isInvite: boolean;
   requestId?: string;
+  redirectUrl?: string;
 };
 
 export function VerifyForm({
@@ -32,6 +33,7 @@ export function VerifyForm({
   requestId,
   code,
   isInvite,
+  redirectUrl,
 }: Props) {
   const router = useRouter();
 
@@ -85,6 +87,7 @@ export function VerifyForm({
         loginName: loginName,
         organization: organization,
         requestId: requestId,
+        redirectUrl: redirectUrl,
       })
         .catch(() => {
           setError(t("errors.couldNotVerifyUser"));
