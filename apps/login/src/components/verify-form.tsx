@@ -11,6 +11,7 @@ import { Button, ButtonVariants } from "./button";
 import { TextInput } from "./input";
 import { Spinner } from "./spinner";
 import { Translated } from "./translated";
+import { setCustomRedirectUrl } from "@/lib/server/custom-redirect-url";
 
 type Inputs = {
   code: string;
@@ -23,6 +24,7 @@ type Props = {
   code?: string;
   isInvite: boolean;
   requestId?: string;
+  redirectUrl?: string;
 };
 
 export function VerifyForm({
@@ -32,6 +34,7 @@ export function VerifyForm({
   requestId,
   code,
   isInvite,
+  redirectUrl,
 }: Props) {
   const router = useRouter();
 
@@ -77,6 +80,10 @@ export function VerifyForm({
       value: Inputs,
     ): Promise<boolean | void> {
       setLoading(true);
+
+      if (redirectUrl) {
+        await setCustomRedirectUrl(redirectUrl);
+      }
 
       const response = await sendVerification({
         code: value.code,
