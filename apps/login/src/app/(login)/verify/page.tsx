@@ -21,7 +21,7 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function Page(props: { searchParams: Promise<any> }) {
   const searchParams = await props.searchParams;
 
-  const { userId, loginName, code, organization, requestId, invite, send } = searchParams;
+  const { userId, loginName, code, organization, requestId, invite, send, redirectUrl } = searchParams;
 
   const _headers = await headers();
   const { serviceConfig } = getServiceConfig(_headers);
@@ -163,6 +163,7 @@ export default async function Page(props: { searchParams: Promise<any> }) {
             requestId={requestId}
             submit={autoSubmitCode}
             doSend={doSend}
+            redirectUrl={redirectUrl}
           />
         )}
       </div>

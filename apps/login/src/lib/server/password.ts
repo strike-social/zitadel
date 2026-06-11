@@ -33,6 +33,7 @@ import {
   checkUserVerification,
 } from "../verify-helper";
 import { getPublicHostWithProtocol } from "./host";
+import { getAndDeleteCustomRedirectUrl } from "./custom-redirect-url";
 
 const logger = createLogger("password");
 
@@ -423,12 +424,13 @@ export async function sendPassword(
   } else {
     // Regular flow (no requestId)
     logger.info("Password auth: Regular flow with loginName:", { loginName: session.factors.user.loginName });
+    const customRedirectUrl = await getAndDeleteCustomRedirectUrl()
     result = await completeFlowOrGetUrl(
       {
         loginName: session.factors.user.loginName,
         organization: session.factors?.user?.organizationId,
       },
-      loginSettingsByUser?.defaultRedirectUri,
+      customRedirectUrl ??  loginSettingsByUser?.defaultRedirectUri,
     );
   }
 
