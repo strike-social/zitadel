@@ -45,7 +45,7 @@
       "couldNotStartIDPFlow": "Could not start IDP flow",
       "moreThanOneUserFound": "More than one user found. Provide a unique identifier.",
       "userNotFound": "User not found in the system",
-      "couldNotCreateSession": "Could not create session for user",
+      "couldNotCreateSession": "Login using incorrect password",
       "initialUserNotSupported": "Initial User not supported",
       "localAuthenticationNotAllowed": "Local authentication is not allowed! Contact your administrator for more information.",
       "passkeysNotAllowed": "Passkeys not allowed! Contact your administrator for more information.",
@@ -137,7 +137,7 @@
     "errors": {
       "noHostFound": "No host found",
       "couldNotSendResetLink": "Could not send Password Reset Link",
-      "couldNotCreateSessionForUser": "Could not create session for user",
+      "couldNotCreateSessionForUser": "Login using incorrect password",
       "couldNotVerifyPassword": "Could not verify password",
       "failedToAuthenticate": "Failed to authenticate. You had {failedAttempts} of {maxPasswordAttempts} password attempts.{lockoutMessage}",
       "failedToAuthenticateNoLimit": "Failed to authenticate.",
