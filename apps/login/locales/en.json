@@ -137,7 +137,7 @@
     "errors": {
       "noHostFound": "No host found",
       "couldNotSendResetLink": "Could not send Password Reset Link",
-      "couldNotCreateSessionForUser": "Login using incorrect password",
+      "couldNotCreateSessionForUser": "Incorrect username or password",
       "couldNotVerifyPassword": "Could not verify password",
       "failedToAuthenticate": "Failed to authenticate. You had {failedAttempts} of {maxPasswordAttempts} password attempts.{lockoutMessage}",
       "failedToAuthenticateNoLimit": "Failed to authenticate.",
