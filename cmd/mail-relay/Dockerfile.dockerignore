@@ -1,0 +1,9 @@
+*
+!go.mod
+!go.sum
+!backend
+!cmd
+!internal
+!pkg
+**/statik/statik.go
+**/node_modules
